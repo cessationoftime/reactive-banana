@@ -16,7 +16,7 @@ module Reactive.Banana.Frameworks (
     compile, Frameworks,
     module Control.Event.Handler,
     fromAddHandler, fromChanges, fromPoll,
-    reactimate, reactimate', initial, changes, imposeChanges,
+    reactimate, Future, reactimate', initial, changes, imposeChanges,
     FrameworksMoment(..), execute, liftIOLater,
     -- $liftIO
     module Control.Monad.IO.Class,
@@ -279,8 +279,8 @@ actuate :: EventNetwork -> IO ()
 actuate = Prim.actuate . unEN
 
 -- | Pause an event network.
--- Immediately stop producing output and
--- unregister all event handlers for inputs.
+-- Immediately stop producing output.
+-- (In a future version, it will also unregister all event handlers for inputs.)
 -- Hence, the network stops responding to input events,
 -- but it's state will be preserved.
 --
